@@ -4,7 +4,13 @@ import StarterKit from "@tiptap/starter-kit" //รวม extensions พื้น
 import Menubar from "./menu-bar"
 import TextAlign from "@tiptap/extension-text-align"
 import Highlight from "@tiptap/extension-highlight"
+import { useEffect } from "react"
+
 //EditorContent คือ React component ที่เอา editor มาวางบน DOM
+interface RichtextEditorProps {
+    value?: string
+    onChange?: (value: string) => void
+}
 
 export default function RichtextEditor() {
     const editor = useEditor({
