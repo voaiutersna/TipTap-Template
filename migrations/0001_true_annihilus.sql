@@ -1,0 +1,1 @@
+ALTER TABLE "contents" ADD COLUMN "content_jsonb" jsonb;

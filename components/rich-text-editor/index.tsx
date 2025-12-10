@@ -7,12 +7,14 @@ import Highlight from "@tiptap/extension-highlight"
 import { useEffect } from "react"
 
 //EditorContent คือ React component ที่เอา editor มาวางบน DOM
+
+//ใช้กำหนด type ของ props ที่รับเข้ามา
 interface RichtextEditorProps {
-    value?: string
-    onChange?: (value: string) => void
+    value?: string // JSON string
+    onChange?: (html: string, json: string) => void
 }
 
-export default function RichtextEditor() {
+export default function RichtextEditor({ value, onChange }: RichtextEditorProps) {
     const editor = useEditor({
         extensions: [StarterKit.configure({
             bulletList: {
@@ -38,9 +40,32 @@ export default function RichtextEditor() {
             attributes: {
                 class: "min-h-[156px] border rounded-md bg-slate-50 py-2 px-3"
             }
+        },
+        onUpdate: ({ editor }) => {
+            const html = editor.getHTML()
+            const json = JSON.stringify(editor.getJSON())
+            onChange?.(html, json)
         }
+        
     })
+    // Sync external value changes to editor
+    useEffect(() => {
+        if (editor && value) {
+            try {
+                console.log("Editor working",editor)
+                console.log("Value working",value)
 
+                const parsed = JSON.parse(value);
+                console.log('✅Can parse to object');
+                console.log('Parsed type:', parsed.type);
+
+            } catch (error) {
+                console.error("Error parsing JSON:", error)
+            }
+        }
+    }, [editor, value])
+
+    
     return (
         <div>
             <Menubar editor={editor} />

@@ -1,0 +1,63 @@
+{
+  "id": "6670e4b6-a6cf-451b-82e3-6bd03a40a655",
+  "prevId": "f32ef62f-aafc-41fa-8ad5-9f0764e55acf",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.contents": {
+      "name": "contents",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content_html": {
+          "name": "content_html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_json": {
+          "name": "content_json",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content_jsonb": {
+          "name": "content_jsonb",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

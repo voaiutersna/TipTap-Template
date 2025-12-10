@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import axios from "axios"
 import { useState } from "react"
-import { useForm } from "react-hook-form"
 
 // Zod Schema
 const contentSchema = z.object({
@@ -33,7 +32,6 @@ export default function Home() {
 
   const onSubmit = async (data: ContentFormData) => {
     try {
-      console.log("Data get in",data)
       setIsLoading(true)
       const response = await axios.post("/api/content", {
         contentHtml: data.contentHtml,
@@ -50,24 +48,15 @@ export default function Home() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <div className="max-w-3xl mx-auto py-4">
-        <RichtextEditor
-          value={watch("contentJson")}
-          onChange={handleEditorChange}
-        />
-        {(errors.contentHtml || errors.contentJson) && (
-          <p className="text-red-500 text-sm mt-1">
-            {errors.contentHtml?.message || errors.contentJson?.message}
-          </p>
-        )}
+        <RichtextEditor></RichtextEditor>
       </div>
 
       <div className="flex justify-center">
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "กำลังบันทึก..." : "Submit"}
-        </Button>
+        <Button>Submit</Button>
       </div>
-    </form>
+
+    </>
   )
 }
