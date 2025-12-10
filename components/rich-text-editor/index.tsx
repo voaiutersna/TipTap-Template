@@ -3,8 +3,7 @@ import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit" //รวม extensions พื้นฐาน
 import Menubar from "./menu-bar"
 import TextAlign from "@tiptap/extension-text-align"
-
-
+import Highlight from "@tiptap/extension-highlight"
 //EditorContent คือ React component ที่เอา editor มาวางบน DOM
 
 export default function RichtextEditor() {
@@ -19,8 +18,9 @@ export default function RichtextEditor() {
                 HTMLAttributes: {
                     class: 'list-decimal ml-3',
                 },
-            }
+            },
         }),
+        Highlight,
         TextAlign.configure({
             types: ["heading", "paragraph"]
         })],

@@ -7,7 +7,10 @@ export default function Home() {
         <RichtextEditor></RichtextEditor>
       </div>
       
-      <Button>Submit</Button>
+      <div className="flex justify-center">
+        <Button>Submit</Button>
+      </div>
+      
     </>
   )
 }
