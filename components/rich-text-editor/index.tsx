@@ -10,11 +10,12 @@ import { useEffect } from "react"
 
 //ใช้กำหนด type ของ props ที่รับเข้ามา
 interface RichtextEditorProps {
+    initialContent?: any
     value?: string // JSON string
     onChange?: (html: string, json: string) => void
 }
 
-export default function RichtextEditor({ value, onChange }: RichtextEditorProps) {
+export default function RichtextEditor({initialContent, value, onChange }: RichtextEditorProps) {
     const editor = useEditor({
         extensions: [StarterKit.configure({
             bulletList: {
@@ -32,7 +33,7 @@ export default function RichtextEditor({ value, onChange }: RichtextEditorProps)
         TextAlign.configure({
             types: ["heading", "paragraph"]
         })],
-        content: '<p>Hello World!</p>',
+        content: initialContent || '<p>Hello World!</p>',
         immediatelyRender: false, //กัน render โดยที่ไม่มีdom
 
         //styling Editor
@@ -54,10 +55,6 @@ export default function RichtextEditor({ value, onChange }: RichtextEditorProps)
             try {
                 console.log("Editor working",editor)
                 console.log("Value working",value)
-
-                const parsed = JSON.parse(value);
-                console.log('✅Can parse to object');
-                console.log('Parsed type:', parsed.type);
 
             } catch (error) {
                 console.error("Error parsing JSON:", error)
